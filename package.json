@@ -21,8 +21,8 @@
     "actions-toolkit": "^2.1.0",
     "front-matter": "^3.0.2",
     "js-yaml": "^3.13.1",
-    "nunjucks": "^3.2.0",
-    "nunjucks-date-filter": "^0.1.1"
+    "kebab-case": "^1.0.0",
+    "nunjucks": "^3.2.0"
   },
   "devDependencies": {
     "jest": "^24.8.0",
