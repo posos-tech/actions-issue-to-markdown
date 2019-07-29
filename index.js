@@ -46,6 +46,15 @@ Toolkit.run(
       }
     );
 
+    const labels = issue.labels.edges.map(label => label.node.name);
+    // Check that the issue's labels matches a certain type
+    if (
+      !issue.labels.totalCount ||
+      !labels.includes(process.env.VALID_ISSUE_LABEL || "paper")
+    ) {
+      tools.exit.neutral("No VALID_ISSUE_LABEL found in the issue, skipping");
+    }
+
     // Convert the issue's body to a front matter JSON
     const { attributes, body } = fm(issue.body);
     tools.log.info(`Front matter for issue #${issue.number} is`, attributes);
@@ -56,9 +65,7 @@ Toolkit.run(
       body,
       title: issue.title,
       createdAt: issue.createdAt,
-      tags:
-        issue.labels.totalCount > 0 &&
-        issue.labels.edges.map(label => label.node.name),
+      tags: labels,
       author: issue.author.name,
       notes: attributes.notes,
       source: attributes.source
@@ -70,7 +77,7 @@ Toolkit.run(
     tools.log.info(`${fileToCommit} created`);
   },
   {
-    event: ["issues"],
+    event: ["issues.closed"],
     secrets: ["GITHUB_TOKEN"]
   }
 );
