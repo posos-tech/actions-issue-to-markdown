@@ -19,9 +19,9 @@
   "homepage": "https://github.com/posos-tech/actions-issue-to-markdown#readme",
   "dependencies": {
     "actions-toolkit": "^2.1.0",
+    "dashify": "^2.0.0",
     "front-matter": "^3.0.2",
     "js-yaml": "^3.13.1",
-    "kebab-case": "^1.0.0",
     "nunjucks": "^3.2.0"
   },
   "devDependencies": {

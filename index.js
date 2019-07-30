@@ -3,7 +3,7 @@ const fs = require("fs");
 const fm = require("front-matter");
 const path = require("path");
 const nunjucks = require("nunjucks");
-const kebabCase = require("kebab-case");
+const dashify = require("dashify");
 
 Toolkit.run(
   async tools => {
@@ -72,7 +72,7 @@ Toolkit.run(
     });
 
     // Commit file
-    const fileToCommit = path.join(contentPath, kebabCase(issue.title) + ".md");
+    const fileToCommit = path.join(contentPath, dashify(issue.title) + ".md");
     const err = fs.writeFileSync(fileToCommit, templated);
     tools.log.info(`${fileToCommit} created`);
   },
